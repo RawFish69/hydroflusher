@@ -10,7 +10,7 @@ permissions:
   contents: write
 
 jobs:
-  run_lootpool_script:
+  run_generation_script:
     runs-on: ubuntu-latest
 
     steps:
