@@ -1,5 +1,5 @@
 """
-Script Name: PumpPlot
+Script Name: PumpSinglePlot
 Description: Capstone Project Computation - Create single plot for pump & system curve
 """
 import numpy as np
