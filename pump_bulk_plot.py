@@ -1,5 +1,5 @@
 """
-Script Name: PumpAccPlot
+Script Name: PumpBulkPlot
 Description: Capstone Project Computation - Calculation and Visualization for Pump & Accumulator conditions
 """
 import numpy as np
