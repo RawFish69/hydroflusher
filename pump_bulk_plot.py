@@ -5,6 +5,7 @@ Description: Capstone Project Computation - Calculation and Visualization for Pu
 import numpy as np
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta, timezone
+import time
 
 def accumulator_shift(volume, discharge_time):
     return volume / discharge_time
@@ -88,9 +89,10 @@ def generate_combinations_plot(volumes, discharge_times, efficiencies, Q_max=100
     CST = timezone(timedelta(hours=-5))
     time_now = datetime.now(CST)
     current_datetime = time_now.strftime("%Y-%m-%d %H:%M:%S")
-    fig.suptitle(f"Possible Pump & Accumulator Variations\nResults Generated at {current_datetime} @TAMU ETID Capstone Project Rev", fontsize=15)  # Add the super title here
+    fig.suptitle(f"Possible Pump & Accumulator Variations\nResults Generated at {current_datetime} @TAMU ETID Capstone Project Rev", fontsize=15)
+    print(f"{filename} generated")
     plt.savefig(filename)
-
+    time.sleep(0.25)
 
 def main():
     # Condition 1 - Fixed eff
