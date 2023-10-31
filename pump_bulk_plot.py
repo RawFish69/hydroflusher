@@ -97,19 +97,19 @@ def main():
     volumes1 = [5, 10, 15, 20]
     discharge_times1 = [1, 2, 3, 4, 5]
     efficiencies1 = [1.0]  # 100% efficiency
-    generate_combinations_plot(volumes1, discharge_times1, efficiencies1, filename="single_pump_accu_variables.png")
+    generate_combinations_plot(volumes1, discharge_times1, efficiencies1, filename="plots/single_pump_accu_variables.png")
 
     # Condition 2 -  Fixed acc
     volumes2 = [5]
     discharge_times2 = [3]
     efficiencies2 = [1.0, 1.25, 1.5, 1.75, 2.0]  # Efficiency values provided
-    generate_combinations_plot(volumes2, discharge_times2, efficiencies2, filename="double_pump_eff_variables.png")
+    generate_combinations_plot(volumes2, discharge_times2, efficiencies2, filename="plots/double_pump_eff_variables.png")
 
     # Condition 3 - Mixed
     volumes3 = [3, 5, 10, 15]
     discharge_times3 = [1, 3, 5]
     efficiencies3 = [1.0, 1.5, 2.0]  # Efficiency values provided
-    generate_combinations_plot(volumes3, discharge_times3, efficiencies3, filename="pump_acc_mix_variables.png")
+    generate_combinations_plot(volumes3, discharge_times3, efficiencies3, filename="plots/pump_acc_mix_variables.png")
 
     # We can add more later
 
