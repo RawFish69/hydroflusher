@@ -1,9 +1,10 @@
 """
-Script Name: PumpSinglePlot
+Script Name: PumpPlot
 Description: Capstone Project Computation - Create single plot for pump & system curve
 """
 import numpy as np
 import matplotlib.pyplot as plt
+import time
 
 
 def accumulator_shift(volume, discharge_time):
@@ -17,7 +18,7 @@ def system_curve(Q, h0, k):
     return h0 + k * Q ** 2
 
 
-def plot_pump_system_curves(Q_max=100, H_max=300, h=30, k=0.02, Q_shift=15, Q_accumulator_shift=20):
+def plot_pump_system_curves(Q_max=300, H_max=300, h=30, k=0.02, Q_shift=15, Q_accumulator_shift=20, filename="figure.png"):
     # Constants -> Replaced by parameters upon calling this function
     # Below is for testing purpose ONLY
     # Q_max = 100
@@ -27,7 +28,7 @@ def plot_pump_system_curves(Q_max=100, H_max=300, h=30, k=0.02, Q_shift=15, Q_ac
     # Q_shift = 15
     # Q_accumulator_shift = 20
     # Flow rate range (extended for a longer system curve)
-    Q = np.linspace(0, 200, 400)
+    Q = np.linspace(0, 300, 400)
     # Flow offset
     Q -= Q_shift
     # Pump curves, number represent eff % ratio
@@ -82,29 +83,51 @@ def plot_pump_system_curves(Q_max=100, H_max=300, h=30, k=0.02, Q_shift=15, Q_ac
                          # bbox=dict(boxstyle="round,pad=0.3", edgecolor="none", facecolor="aliceblue"),
                          arrowprops=dict(facecolor='black', arrowstyle='->'))
             annotated_intersections.append(Q_acc[idx_int_acc])
+    input_info = (f"Q_max: {Q_max} m^3/h\n"
+                  f"H_max: {H_max} m\n"
+                  f"h: {h} m\n"
+                  f"k: {k}\n"
+                  f"Q_shift: {Q_shift} m^3/h\n"
+                  f"Q_accumulator_shift: {Q_accumulator_shift} m^3/h")
+
+    # Annotate the input information on the top-left corner
+    plt.annotate(input_info,
+                 xy=(0.05, 0.8),
+                 xycoords='axes fraction',
+                 fontsize=8,
+                 ha='left',
+                 va='top',
+                 bbox=dict(boxstyle="round,pad=0.3", edgecolor="none", facecolor="aliceblue"))
+
     plt.legend(loc='upper left')
     plt.plot(Q, H_system, 'r', label='System Curve')
     plt.legend(['Pump Curve', 'Pump + Accumulator Curve', 'System Curve'])
     plt.xlabel('Flow Rate (m^3/h)')
     plt.ylabel('Head (m)')
-    plt.xlim([75, 175])
-    plt.ylim([100, 800])
+    plt.xlim([100, 350])
+    plt.ylim([100, 1000])
     plt.title('Pump and System Curves with Accumulator Effect')
     plt.grid(True)
     plt.tight_layout()
-    plt.show()
+    plt.savefig(filename)
+    plt.close()
 
 
-def generate_combinations_plot(volumes, discharge_times, Q_max=100, H_max=300, h=30, k=0.02, Q_shift=15):
+def generate_combinations_plot(volumes, discharge_times, Q_max=150, H_max=500, h=30, k=0.02, Q_shift=20):
+    iteration = 1
     for volume in volumes:
         for discharge_time in discharge_times:
             shift = accumulator_shift(volume, discharge_time)
-            plot_pump_system_curves(Q_max, H_max, h, k, Q_shift, shift)
+            file_name = f"pump_system_Q_{Q_max}_H_{H_max}_shift_{Q_shift}_{iteration}.png"
+            iteration += 1
+            print(f"Plot generated {file_name}")
+            plot_pump_system_curves(Q_max, H_max, h, k, Q_shift, shift, file_name)
+            time.sleep(0.5)
 
 
 def main():
-    volumes = [10, 20, 30, 40, 50]  # Example volumes
-    discharge_times = [1, 2, 3, 4, 5]  # Example discharge times
+    volumes = [0, 1, 3, 5, 10, 20, 30, 40, 50]  # Example volumes
+    discharge_times = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  # Example discharge times
     generate_combinations_plot(volumes, discharge_times)
 
 
