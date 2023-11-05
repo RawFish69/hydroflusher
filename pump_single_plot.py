@@ -39,8 +39,8 @@ def plot_pump_system_curves(Q_max=300, H_max=300, h=30, k=0.02, Q_shift=15, Q_ac
     plt.figure(figsize=(8, 8))
 
     # Define colors for each curve to use in the plot and legend
-    pump_colors = ['blue', 'blue', 'blue', 'blue']
-    accumulator_colors = ['cyan', 'cyan', 'cyan', 'cyan']
+    accumulator_colors = ['blue', 'blue', 'blue', 'blue']
+    pump_colors = ['cyan', 'cyan', 'cyan', 'cyan']
 
     # Plotting pump curves
     plt.plot(Q, H_single, color=pump_colors[0], label='Single Pump')
@@ -78,7 +78,7 @@ def plot_pump_system_curves(Q_max=300, H_max=300, h=30, k=0.02, Q_shift=15, Q_ac
         idx_int_acc = np.where(diff_acc_system[:-1] * diff_acc_system[1:] <= 0)[0][-1]
         q_value_acc = Q_acc[idx_int_acc]
         head_value_acc = H_system[idx_int_acc]
-        plt.plot(q_value_acc, head_value_acc, 'o', color=acc_color)  # Mark intersection point
+        # plt.plot(q_value_acc, head_value_acc, 'o', color=acc_color)  # Mark intersection point
         custom_legend_handles.append(plt.Line2D([], [], color=acc_color, marker='o', linestyle='--',
                                                 label=f'{name} + Acc: Q={q_value_acc:.2f} m³/h, Head={head_value_acc:.2f} m'))
 
@@ -86,7 +86,7 @@ def plot_pump_system_curves(Q_max=300, H_max=300, h=30, k=0.02, Q_shift=15, Q_ac
     custom_legend_handles.append(plt.Line2D([], [], color='red', linestyle='-', label='System Curve'))
 
     # Adding the accumulator volume to the legend
-    accumulator_info = f"Accumulator Volume: {volume:.2f} m³, Discharge interval: {discharge_time}/ hour"
+    accumulator_info = f"Accumulator Volume: {volume:.2f} m³, Discharge interval: {discharge_time}/h"
     custom_legend_handles.append(plt.Line2D([], [], color='none', label=accumulator_info))
 
     # Plotting the custom legend
@@ -108,15 +108,15 @@ def generate_combinations_plot(volumes, discharge_times, Q_max=150, H_max=500, h
     for volume in volumes:
         for discharge_time in discharge_times:
             shift = accumulator_shift(volume, discharge_time)
-            file_name = f"pump_system_Q_{Q_max}_H_{H_max}_shift_{Q_shift}_{iteration}.png"
+            file_name = f"plots/pump_system_Q_{Q_max}_H_{H_max}_shift_{Q_shift}_{iteration}.png"
             iteration += 1
             plot_pump_system_curves(Q_max, H_max, h, k, Q_shift, shift, volume, discharge_time, file_name)
             time.sleep(1)
 
 
 def main():
-    volumes = [0, 1, 3, 5, 10, 20, 30, 40, 50]  # Example volumes
-    discharge_times = [0, 1, 2, 3, 5, 10, 15, 20, 25, 30]  # Example discharge times
+    volumes = [1, 3, 5, 7, 10, 20, 30, 40, 50]  # Example volumes
+    discharge_times = [0.5, 1, 2, 3, 5, 10, 15, 20, 25, 30]  # Example discharge times
     generate_combinations_plot(volumes, discharge_times)
 
 main()
