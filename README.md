@@ -1,4 +1,4 @@
-# Enhanced Cycle Time Reduction in Hydraulic Systems
+# Cycle Time Optimization in Hydraulic Flushing Systems
 
 ## Overview
 This repository contains a study on the interaction between pump curves and system curves within hydraulic systems, and the impact of accumulators on flushing cycle times. The integration of an accumulator is expected to improve operational efficiency by allowing for a higher flow rate, thus reducing cycle times and enhancing overall system performance.  
