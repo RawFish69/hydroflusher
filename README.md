@@ -4,23 +4,16 @@
 This repository contains a study on the interaction between pump curves and system curves within hydraulic systems, and the impact of accumulators on flushing cycle times. The integration of an accumulator is expected to improve operational efficiency by allowing for a higher flow rate, thus reducing cycle times and enhancing overall system performance.  
 In various industrial applications, the efficiency of hydraulic systems is often determined by the relationship between the pump performance (pump curves) and the system resistance (system curves). This project explores the hypothesis that using an accumulator can lead to significant improvements in cycle times, offering a detailed analysis supported by mathematical models and simulations.
 
-#### Example output (single):  
-![sample Pump Curve Diagram](plots/pump_system_Q_150_H_500_shift_20_63.png)  
-
-#### Example output (cluster):  
-![sample Pump Curve Diagram](plots/pump_acc_mix_variables.png)
-
-
 ## Methodology
 The investigation involves modeling pump and system curves with a focus on the mathematical relationships between flow rate and head. The key equations used in the study are:
 
-- Pump Curve Equation:  
+- **ump Curve Equation:**  
   `H = H_max * (1 - (Q/Q_max)^2)`
   
-- System Curve Equation:  
+- **System Curve Equation:**  
   `h = h0 + k * Q^2`
   
-- Adjusting Flow Rate for Accumulator Effect:  
+- **Adjusting Flow Rate for Accumulator Effect:**  
   `Q_new = Q_original + ΔQ_accumulator`
 
 - **Continuity Equation (Conservation of Mass):**  
@@ -48,6 +41,12 @@ These equations are fundamental to understanding and predicting the behavior of 
 
 ## Results
 The simulation results show the intersections between the pump and system curves, with and without the accumulator. These intersections dictate the operational points that directly influence the system's flushing cycle times.
+
+#### Example output (single):  
+![sample Pump Curve Diagram](plots/pump_system_Q_150_H_500_shift_20_63.png)  
+
+#### Example output (cluster):  
+![sample Pump Curve Diagram](plots/pump_acc_mix_variables.png)
 
 An accumulator in the hydraulic system leads to a noticeable shift in the pump curves, demonstrating the potential for cycle time reduction. This shift points towards a greater flow rate that can significantly reduce the time required for flushing cycles, implying enhanced system efficiency and throughput.
 
