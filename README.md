@@ -61,7 +61,7 @@ To further support this study, a web scraper has been developed to aggregate pro
 - The scrapper is still WIP and only for demonstration purposes. 
 
 ### Scraper Output
-The scraper outputs a JSON file containing the aggregated product data which can be found at [sample output json](web/product_data.json)
+The scraper outputs a JSON file containing the aggregated product data which can be found at [sample output json](web/all_products.json)
 
 ## How to Use This Repository
 - Clone the repository to get the simulation code and datasets.
