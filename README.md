@@ -1,9 +1,11 @@
 # Enhanced Cycle Time Reduction in Hydraulic Systems
 
 ## Overview
-This repository contains a study on the interaction between pump curves and system curves within hydraulic systems, and the impact of accumulators on flushing cycle times. The integration of an accumulator is expected to improve operational efficiency by allowing for a higher flow rate, thus reducing cycle times and enhancing overall system performance.  
+This repository contains a study on the interaction between pump curves and system curves within hydraulic systems, and the impact of accumulators on flushing cycle times. The integration of an accumulator is expected to improve operational efficiency by allowing for a higher flow rate, thus reducing cycle times and enhancing overall system performance.
+
 #### Example output (single):  
 ![sample Pump Curve Diagram](plots/pump_system_Q_150_H_500_shift_20_63.png)  
+
 #### Example output (cluster):  
 ![sample Pump Curve Diagram](plots/pump_acc_mix_variables.png)
 
@@ -13,19 +15,30 @@ In various industrial applications, the efficiency of hydraulic systems is often
 ## Methodology
 The investigation involves modeling pump and system curves with a focus on the mathematical relationships between flow rate and head. The key equations used in the study are:
 
-- Pump Curve Equation:
-where `H` is the head, `H_max` is the maximum head, `Q` is the flow rate, and `Q_max` is the maximum flow rate.
-
-- System Curve Equation:
-where `h0` is the static head and `k` is the system loss coefficient.
-
-- Adjusting Flow Rate for Accumulator Effect:
-where `ΔQ_accumulator` is the flow rate increase due to the accumulator.
+- Pump Curve Equation:  
+  `H = H_max * (1 - (Q/Q_max)^2)`
+  
+- System Curve Equation:  
+  `h = h0 + k * Q^2`
+  
+- Adjusting Flow Rate for Accumulator Effect:  
+  `Q_new = Q_original + ΔQ_accumulator`
 
 ## Results
-The simulation results show the intersections between the pump and system curves, with and without the accumulator. These intersections dictate the operational points that directly influence the system's flushing cycle times.  
+The simulation results show the intersections between the pump and system curves, with and without the accumulator. These intersections dictate the operational points that directly influence the system's flushing cycle times.
+
 An accumulator in the hydraulic system leads to a noticeable shift in the pump curves, demonstrating the potential for cycle time reduction. This shift points towards a greater flow rate that can significantly reduce the time required for flushing cycles, implying enhanced system efficiency and throughput.
-The findings of this project support the hypothesis that accumulators can play a crucial role in optimizing hydraulic systems, particularly where reduced cycle times are beneficial.  
+
+The findings of this project support the hypothesis that accumulators can play a crucial role in optimizing hydraulic systems, particularly where reduced cycle times are beneficial.
+
+## Web Scraper Integration
+To further support this study, a web scraper has been developed to aggregate product data related to hydraulic accumulators from various online sources. The scraper extracts the name, URL, and price of products, and saves the formatted HTML to a separate file.
+
+### INFO
+- The scrapper is still WIP and only for demonstration purposes. 
+
+### Scraper Output
+The scraper outputs a JSON file containing the aggregated product data which can be found at [sample output json](web/product_data.json)
 
 ## How to Use This Repository
 - Clone the repository to get the simulation code and datasets.
