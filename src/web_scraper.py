@@ -4,36 +4,31 @@ from urllib.parse import urljoin, urlparse
 import json
 import random
 
-# Define a list of user agents to randomly choose from
+# Mimic human browser (very ethical)
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.3 Safari/605.1.15",
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36",
     "Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko",
     "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1"
-    # Add more user agents if needed
 ]
 
 
 def get_random_headers():
-    """Get random headers for the request."""
     return {'User-Agent': random.choice(USER_AGENTS)}
 
 
 def save_html(content, domain):
-    """Save raw HTML content to a file named after the domain."""
     filename = f"{domain}_page.html"
     with open(filename, 'w', encoding='utf-8') as f:
         f.write(content)
 
 
 def is_valid_product_container(tag):
-    """Determine if a tag is a valid product container."""
     return tag.name == 'div' and 'grid-product' in tag.get('class', [])
 
 
 def extract_product_info(product_container, base_url):
-    """Extract product information from a product container."""
     product_link_tag = product_container.select_one('.grid-product__link')
     product_name_tag = product_container.select_one('.grid-product__title--body')
     product_price_tag = product_container.select_one('.grid-product__price')
@@ -53,7 +48,6 @@ def extract_product_info(product_container, base_url):
 
 
 def scrape_products(url):
-    """Scrape products from a given URL."""
     session = requests.Session()
     session.headers.update(get_random_headers())
 
@@ -78,7 +72,6 @@ def scrape_products(url):
 
 
 def save_product_html(product_html_list, domain):
-    """Save the HTML content for all products to a single file."""
     html_content = '<html><body>'
     for product_html in product_html_list:
         html_content += product_html
@@ -90,7 +83,6 @@ def save_product_html(product_html_list, domain):
 
 
 def save_to_json(data, filename):
-    """Save data to a JSON file, updating the file if it already exists."""
     try:
         with open(filename, 'r+', encoding='utf-8') as f:
             existing_data = json.load(f)
@@ -107,7 +99,6 @@ def save_to_json(data, filename):
 
 
 def get_domain_from_url(url):
-    """Extract the domain name from the given URL."""
     parsed_url = urlparse(url)
     domain = parsed_url.netloc
     if domain.startswith('www.'):
@@ -116,7 +107,6 @@ def get_domain_from_url(url):
 
 
 def scrape_site(url, json_filename):
-    """Scrape products from a single URL and update the JSON file."""
     domain = get_domain_from_url(url)
     print(f"Scraping products from {domain}")
     products = scrape_products(url)
