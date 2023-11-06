@@ -26,7 +26,7 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: Generate cluster of plots
-      run: python pump_bulk_plot.py
+      run: python src/pump_bulk_plot.py
 
     - name: Commit and push changes
       run: |
