@@ -7,20 +7,11 @@ In various industrial applications, the efficiency of hydraulic systems is often
 ## Methodology
 The investigation involves modeling pump and system curves with a focus on the mathematical relationships between flow rate and head. The key equations used in the study are:
 
-- **ump Curve Equation:**  
-  `H = H_max * (1 - (Q/Q_max)^2)`
-  
-- **System Curve Equation:**  
-  `h = h0 + k * Q^2`
-  
-- **Adjusting Flow Rate for Accumulator Effect:**  
-  `Q_new = Q_original + ΔQ_accumulator`
-
 - **Continuity Equation (Conservation of Mass):**  
   `A1 * v1 = A2 * v2`  
   Where `A` is the cross-sectional area and `v` is the fluid velocity at points 1 and 2 in a pipeline.
 
-- **Bernoulli’s Equation (Conservation of Energy):**  
+- **Bernoulli’s Equation:**  
   `P1/γ + v1²/2g + z1 = P2/γ + v2²/2g + z2 + hL`  
   Where `P` is the pressure, `γ` is the specific weight of the fluid, `v` is the fluid velocity, `g` is the acceleration due to gravity, `z` is the elevation head, and `hL` is the head loss between points 1 and 2.
 
@@ -28,7 +19,7 @@ The investigation involves modeling pump and system curves with a focus on the m
   `v = √(2gh)`  
   Where `v` is the velocity of the fluid flowing from an orifice, `g` is the acceleration due to gravity, and `h` is the height of the fluid above the orifice.
 
-- **Darcy-Weisbach Equation (Head Loss due to Friction):**  
+- **Darcy's Equation:**  
   `hL = f * (L/D) * (v²/2g)`  
   Where `hL` is the head loss, `f` is the Darcy friction factor, `L` is the length of the pipe, `D` is the diameter of the pipe, `v` is the flow velocity, and `g` is the acceleration due to gravity.
 
@@ -36,7 +27,18 @@ The investigation involves modeling pump and system curves with a focus on the m
   `P1 * V1^n = P2 * V2^n`  
   Where `P1` and `P2` are the initial and final pressures, `V1` and `V2` are the initial and final volumes, and `n` is the polytropic exponent for the compression/expansion process.
 
-These equations are fundamental to understanding and predicting the behavior of hydraulic systems under various operational conditions. The integration of accumulators and analysis of system dynamics require a thorough application of these principles.
+- **Pump Curve Equation:**  
+  `H = H_max * (1 - (Q/Q_max)^2)`  
+  where `H_max` is the maximum head at zero flow, and `Q_max` is the maximum flow at zero head. This parabolic relationship shows that as the flow rate increases, the head produced by the pump decreases.
+
+- **System Curve Equation:**  
+  `h = h0 + k * Q^2`  
+  where `h0` represents the static head that the pump must overcome (e.g., elevation change), and `k` is a coefficient that accounts for system losses due to friction and other resistance factors in the pipes. As flow rate increases, the head loss increases quadratically.
+
+- **Adjusting Flow Rate for Accumulator Effect:**  
+  `Q_new = Q_original + ΔQ_accumulator`  
+  where `Q_original` is the flow rate without the accumulator, and `ΔQ_accumulator` is the change in flow rate contributed by the discharge or charge of the accumulator. Accumulators can provide additional flow during peak demand and absorb excess flow, thus stabilizing the system pressure.
+These equations are fundamental to understanding and predicting the behavior of hydraulic systems under various operational conditions.
 
 
 ## Results
@@ -70,4 +72,4 @@ The scraper outputs a JSON file containing the aggregated product data which can
 This project is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgements
-We would like to thank the University and Tenaris for sponsoring this project.
+Our team would like to thank the University and Tenaris for sponsoring this project.
