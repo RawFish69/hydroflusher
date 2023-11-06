@@ -1,7 +1,8 @@
 # Enhanced Cycle Time Reduction in Hydraulic Systems
 
 ## Overview
-This repository contains a study on the interaction between pump curves and system curves within hydraulic systems, and the impact of accumulators on flushing cycle times. The integration of an accumulator is expected to improve operational efficiency by allowing for a higher flow rate, thus reducing cycle times and enhancing overall system performance.
+This repository contains a study on the interaction between pump curves and system curves within hydraulic systems, and the impact of accumulators on flushing cycle times. The integration of an accumulator is expected to improve operational efficiency by allowing for a higher flow rate, thus reducing cycle times and enhancing overall system performance.  
+In various industrial applications, the efficiency of hydraulic systems is often determined by the relationship between the pump performance (pump curves) and the system resistance (system curves). This project explores the hypothesis that using an accumulator can lead to significant improvements in cycle times, offering a detailed analysis supported by mathematical models and simulations.
 
 #### Example output (single):  
 ![sample Pump Curve Diagram](plots/pump_system_Q_150_H_500_shift_20_63.png)  
@@ -9,8 +10,6 @@ This repository contains a study on the interaction between pump curves and syst
 #### Example output (cluster):  
 ![sample Pump Curve Diagram](plots/pump_acc_mix_variables.png)
 
-## Introduction
-In various industrial applications, the efficiency of hydraulic systems is often determined by the relationship between the pump performance (pump curves) and the system resistance (system curves). This project explores the hypothesis that using an accumulator can lead to significant improvements in cycle times, offering a detailed analysis supported by mathematical models and simulations.
 
 ## Methodology
 The investigation involves modeling pump and system curves with a focus on the mathematical relationships between flow rate and head. The key equations used in the study are:
@@ -23,6 +22,29 @@ The investigation involves modeling pump and system curves with a focus on the m
   
 - Adjusting Flow Rate for Accumulator Effect:  
   `Q_new = Q_original + ΔQ_accumulator`
+
+- **Continuity Equation (Conservation of Mass):**  
+  `A1 * v1 = A2 * v2`  
+  Where `A` is the cross-sectional area and `v` is the fluid velocity at points 1 and 2 in a pipeline.
+
+- **Bernoulli’s Equation (Conservation of Energy):**  
+  `P1/γ + v1²/2g + z1 = P2/γ + v2²/2g + z2 + hL`  
+  Where `P` is the pressure, `γ` is the specific weight of the fluid, `v` is the fluid velocity, `g` is the acceleration due to gravity, `z` is the elevation head, and `hL` is the head loss between points 1 and 2.
+
+- **Torricelli’s Law:**  
+  `v = √(2gh)`  
+  Where `v` is the velocity of the fluid flowing from an orifice, `g` is the acceleration due to gravity, and `h` is the height of the fluid above the orifice.
+
+- **Darcy-Weisbach Equation (Head Loss due to Friction):**  
+  `hL = f * (L/D) * (v²/2g)`  
+  Where `hL` is the head loss, `f` is the Darcy friction factor, `L` is the length of the pipe, `D` is the diameter of the pipe, `v` is the flow velocity, and `g` is the acceleration due to gravity.
+
+- **Accumulator Charge/Discharge Equation:**  
+  `P1 * V1^n = P2 * V2^n`  
+  Where `P1` and `P2` are the initial and final pressures, `V1` and `V2` are the initial and final volumes, and `n` is the polytropic exponent for the compression/expansion process.
+
+These equations are fundamental to understanding and predicting the behavior of hydraulic systems under various operational conditions. The integration of accumulators and analysis of system dynamics require a thorough application of these principles.
+
 
 ## Results
 The simulation results show the intersections between the pump and system curves, with and without the accumulator. These intersections dictate the operational points that directly influence the system's flushing cycle times.
