@@ -19,7 +19,7 @@ def get_random_headers():
 
 
 def save_html(content, domain):
-    filename = f"{domain}_page.html"
+    filename = f"web/{domain}_page.html"
     with open(filename, 'w', encoding='utf-8') as f:
         f.write(content)
 
@@ -114,7 +114,7 @@ urls_to_scrape = [
 ]
 
 # File to save the product information
-json_filename = 'all_products.json'
+json_filename = 'web/product_data.json'
 
 # Scrape each site and save the results
 for url in urls_to_scrape:
