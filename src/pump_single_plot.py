@@ -86,7 +86,7 @@ def plot_pump_system_curves(Q_max=300, H_max=300, h=30, k=0.02, Q_shift=15, Q_ac
     custom_legend_handles.append(plt.Line2D([], [], color='red', linestyle='-', label='System Curve'))
 
     # Adding the accumulator volume to the legend
-    accumulator_info = f"Accumulator Volume: {volume:.2f} m³, Discharge interval: {discharge_time}/h"
+    accumulator_info = f"Accumulator Volume: {volume:.2f} Gallon, Discharge interval: {discharge_time} per hr"
     custom_legend_handles.append(plt.Line2D([], [], color='none', label=accumulator_info))
 
     # Plotting the custom legend
@@ -115,7 +115,7 @@ def generate_combinations_plot(volumes, discharge_times, Q_max=150, H_max=500, h
 
 
 def main():
-    volumes = [1, 3, 5, 7, 10, 20, 30, 40, 50]  # Example volumes
+    volumes = [1, 3, 5, 7, 8, 10, 12, 15, 30]  # Example volumes
     discharge_times = [0.5, 1, 2, 3, 5, 10, 15, 20, 25, 30]  # Example discharge times
     generate_combinations_plot(volumes, discharge_times)
 
