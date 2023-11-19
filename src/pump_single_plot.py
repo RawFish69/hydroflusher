@@ -46,7 +46,7 @@ def plot_pump_system_curves(Q_max=300, H_max=300, h=30, k=0.01, Q_shift=15, Q_ac
     plt.figure(figsize=(8, 8))
 
     # Define colors for each curve to use in the plot and legend
-    accumulator_colors = ['green', 'blue', 'blue', 'blue', 'blue']
+    accumulator_colors = ['green', 'deepskyblue', 'dodgerblue', 'royalblue', 'blue']
     pump_colors = ['lime', 'cyan', 'cyan', 'cyan', 'cyan']
 
     # Plotting pump curves
