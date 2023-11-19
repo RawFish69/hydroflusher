@@ -27,18 +27,21 @@ The investigation involves modeling pump and system curves with a focus on the m
   `P1 * V1^n = P2 * V2^n`  
   Where `P1` and `P2` are the initial and final pressures, `V1` and `V2` are the initial and final volumes, and `n` is the polytropic exponent for the compression/expansion process.
 
-- **Pump Curve Equation:**  
-  `H = H_max * (1 - (Q/Q_max)^2)`  
-  where `H_max` is the maximum head at zero flow, and `Q_max` is the maximum flow at zero head. This parabolic relationship shows that as the flow rate increases, the head produced by the pump decreases.
+- **Pump Curve Equations:**  
+  The primary equation used to define the pump curve is:  
+  `H = H_max - (a * Q + b * Q^2 + c * Q^3) / Q_max`  
+  where `H_max` is the maximum head, `Q` is the flow rate, `Q_max` is the maximum flow rate, and `a`, `b`, and `c` are empirically determined coefficients that shape the curve.  
+  An alternative simplified equation for the pump curve can be:  
+  `H = h0 - A * (Q/2)^2`  
+  where `h0` represents the head at zero flow, and `A` is a coefficient that determines the curvature based on the pump's characteristics. This quadratic formula suggests a parabolic decrease in head as the flow rate increases, which is typical for centrifugal pumps.
 
-- **System Curve Equation:**  
+- **System Curve Equation (Modified):**  
   `h = h0 + k * Q^2`  
-  where `h0` represents the static head that the pump must overcome (e.g., elevation change), and `k` is a coefficient that accounts for system losses due to friction and other resistance factors in the pipes. As flow rate increases, the head loss increases quadratically.
+  where `h0` is the adjusted static head and `k` is the adjusted resistance coefficient that accounts for system losses. This reflects a lower system curve for a higher flow rate intersection with the pump curve.
 
 - **Adjusting Flow Rate for Accumulator Effect:**  
   `Q_new = Q_original + ΔQ_accumulator`  
-  where `Q_original` is the flow rate without the accumulator, and `ΔQ_accumulator` is the change in flow rate contributed by the discharge or charge of the accumulator. Accumulators can provide additional flow during peak demand and absorb excess flow, thus stabilizing the system pressure.
-These equations are fundamental to understanding and predicting the behavior of hydraulic systems under various operational conditions.
+  where `Q_original` is the flow rate without the accumulator, and `ΔQ_accumulator` is the change in flow rate contributed by the discharge or charge of the accumulator.
 
 
 ## Results
