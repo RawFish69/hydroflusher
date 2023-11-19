@@ -12,47 +12,56 @@ def accumulator_shift(volume, discharge_time):
 
 
 def pump_curve(Q, Q_max, H_max):
-    """ I am using 2nd degree poly formula but change it to whatever """
-    return H_max * (1 - ((Q - Q_max) / Q_max) ** 2)
+    """ Assuming a typical pump curve which is steep at the start and flattens out """
+    # Adjust these coefficients to change the shape of the pump curve
+    a, b, c = 0.8, 0.05, 0.005  # Reduced coefficients for a flatter curve
+
+    head = H_max - (a * Q + b * Q**2 + c * Q**3) / Q_max
+    return np.clip(head, 0, None)  # Ensure that head does not go below 0
+
 
 
 def system_curve(Q, h0, k):
     return h0 + k * Q ** 2
 
 
-def plot_pump_system_curves(Q_max=300, H_max=300, h=30, k=0.02, Q_shift=15, Q_accumulator_shift=20, volume=0, discharge_time=0,
+def plot_pump_system_curves(Q_max=300, H_max=300, h=30, k=0.01, Q_shift=15, Q_accumulator_shift=20, volume=0, discharge_time=0,
                             filename="figure.png"):
     Q = np.linspace(0, Q_max * 2, 400)
     Q -= Q_shift
     pump_curves = [
         pump_curve(Q, Q_max, H_max),
-        pump_curve(Q, Q_max, H_max * 0.5) + pump_curve(Q, Q_max, H_max * 0.5),
-        pump_curve(Q, Q_max, H_max) + pump_curve(Q, Q_max, H_max * 0.5),
+        pump_curve(Q, Q_max, H_max * 0.70) + pump_curve(Q, Q_max, H_max * 0.70),
+        pump_curve(Q, Q_max, H_max * 0.80) + pump_curve(Q, Q_max, H_max * 0.80),
+        pump_curve(Q, Q_max, H_max * 0.90) + pump_curve(Q, Q_max, H_max * 0.90),
         pump_curve(Q, Q_max, H_max) + pump_curve(Q, Q_max, H_max)
     ]
 
     H_single = pump_curve(Q, Q_max, H_max)
-    H_5050 = pump_curve(Q, Q_max, H_max * 0.5) + pump_curve(Q, Q_max, H_max * 0.5)
-    H_10050 = pump_curve(Q, Q_max, H_max) + pump_curve(Q, Q_max, H_max * 0.5)
+    H_7070 = pump_curve(Q, Q_max, H_max * 0.70) + pump_curve(Q, Q_max, H_max * 0.70)
+    H_8080 = pump_curve(Q, Q_max, H_max * 0.80) + pump_curve(Q, Q_max, H_max * 0.80)
+    H_9090 = pump_curve(Q, Q_max, H_max * 0.90) + pump_curve(Q, Q_max, H_max * 0.90)
     H_100100 = pump_curve(Q, Q_max, H_max) + pump_curve(Q, Q_max, H_max)
     H_system = system_curve(Q, h, k)
     plt.figure(figsize=(8, 8))
 
     # Define colors for each curve to use in the plot and legend
-    accumulator_colors = ['blue', 'blue', 'blue', 'blue']
-    pump_colors = ['cyan', 'cyan', 'cyan', 'cyan']
+    accumulator_colors = ['green', 'blue', 'blue', 'blue', 'blue']
+    pump_colors = ['lime', 'cyan', 'cyan', 'cyan', 'cyan']
 
     # Plotting pump curves
     plt.plot(Q, H_single, color=pump_colors[0], label='Single Pump')
-    plt.plot(Q, H_5050, color=pump_colors[1], label='50%+50% Pumps')
-    plt.plot(Q, H_10050, color=pump_colors[2], label='100%+50% Pumps')
+    plt.plot(Q, H_7070, color=pump_colors[1], label='70%+70% Pumps')
+    plt.plot(Q, H_8080, color=pump_colors[2], label='80%+80% Pumps')
+    plt.plot(Q, H_9090, color=pump_colors[2], label='90%+90% Pumps')
     plt.plot(Q, H_100100, color=pump_colors[3], label='100%+100% Pumps')
 
     # Plotting accumulator curves with shifted Q for the accumulator effect
     Q_acc = Q + Q_accumulator_shift
     plt.plot(Q_acc, H_single, '--', color=accumulator_colors[0], label='Single Pump + Acc')
-    plt.plot(Q_acc, H_5050, '--', color=accumulator_colors[1], label='50%+50% Pumps + Acc')
-    plt.plot(Q_acc, H_10050, '--', color=accumulator_colors[2], label='100%+50% Pumps + Acc')
+    plt.plot(Q_acc, H_7070, '--', color=accumulator_colors[1], label='70%+70% Pumps + Acc')
+    plt.plot(Q_acc, H_8080, '--', color=accumulator_colors[2], label='80%+80% Pumps + Acc')
+    plt.plot(Q_acc, H_9090, '--', color=accumulator_colors[2], label='90%+90% Pumps + Acc')
     plt.plot(Q_acc, H_100100, '--', color=accumulator_colors[3], label='100%+100% Pumps + Acc')
 
     # Plotting system curve
@@ -60,7 +69,7 @@ def plot_pump_system_curves(Q_max=300, H_max=300, h=30, k=0.02, Q_shift=15, Q_ac
 
     # Calculating intersection points and creating legend entries
     custom_legend_handles = []
-    curve_names = ["Single Pump", "50%+50% Pumps", "100%+50% Pumps", "100%+100% Pumps"]
+    curve_names = ["Single Pump", "70%+70% Pumps", "80%+80% Pumps", "90%+90% Pumps", "100%+100% Pumps"]
 
     for H_pump, name, pump_color, acc_color in zip(pump_curves, curve_names, pump_colors, accumulator_colors):
         # Intersection for Pump only
@@ -103,7 +112,7 @@ def plot_pump_system_curves(Q_max=300, H_max=300, h=30, k=0.02, Q_shift=15, Q_ac
 
 # Remove any previous annotations code related to the adjust_text_position function or any calls to it.
 
-def generate_combinations_plot(volumes, discharge_times, Q_max=150, H_max=500, h=30, k=0.02, Q_shift=20):
+def generate_combinations_plot(volumes, discharge_times, Q_max=150, H_max=500, h=20, k=0.015, Q_shift=20):
     iteration = 1
     for volume in volumes:
         for discharge_time in discharge_times:
