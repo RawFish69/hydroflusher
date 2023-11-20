@@ -25,3 +25,4 @@ def generate_combinations_plot(volumes, discharge_times, Q_max=150, H_max=200, h
             iteration += 1
             plot_pump_system_curves(Q_max, H_max, h, k, Q_shift, shift, volume, discharge_time, file_name)
             time.sleep(1)
+```
