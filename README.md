@@ -48,10 +48,10 @@ The investigation involves modeling pump and system curves with a focus on the m
 The simulation results show the intersections between the pump and system curves, with and without the accumulator. These intersections dictate the operational points that directly influence the system's flushing cycle times.
 
 #### Example output (single):  
-![sample Pump Curve Diagram](plots/pump_system_Q_150_H_500_shift_20_63.png)  
+![sample Pump Curve Diagram](output/plots/pump_system_Q_150_H_500_shift_20_63.png)  
 
 #### Example output (cluster):  
-![sample Pump Curve Diagram](plots/pump_acc_mix_variables.png)
+![sample Pump Curve Diagram](output/plots/pump_acc_mix_variables.png)
 
 An accumulator in the hydraulic system leads to a noticeable shift in the pump curves, demonstrating the potential for cycle time reduction. This shift points towards a greater flow rate that can significantly reduce the time required for flushing cycles, implying enhanced system efficiency and throughput.
 
