@@ -102,7 +102,7 @@ def plot_pump_system_curves(Q_max=300, H_max=300, h=30, k=0.0025, Q_shift=15, Q_
     plt.ylim([0, H_max*1.4])
     plt.xlabel('Flow Rate (m³/h)')
     plt.ylabel('Head (m)')
-    plt.title('plots/Pump and System Curves with Accumulator Effect')
+    plt.title('Pump and System Curves with Accumulator Effect')
     plt.grid(True)
     plt.tight_layout()
     plt.savefig(filename)
