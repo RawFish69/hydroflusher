@@ -12,13 +12,10 @@ def accumulator_shift(volume, discharge_time):
 
 
 def pump_curve(Q, Q_max, H_max):
-    """ Assuming a typical pump curve which is steep at the start and flattens out """
-    # Adjust these coefficients to change the shape of the pump curve
-    a, b, c = 0.8, 0.05, 0.005  # Reduced coefficients for a flatter curve
+    a, b, c = 0.8, 0.05, 0.005 
 
     head = H_max - (a * Q + b * Q**2 + c * Q**3) / Q_max
-    return np.clip(head, 0, None)  # Ensure that head does not go below 0
-
+    return np.clip(head, 0, None) 
 
 
 def system_curve(Q, h0, k):
