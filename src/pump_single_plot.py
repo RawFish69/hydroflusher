@@ -13,7 +13,6 @@ def accumulator_shift(volume, discharge_time):
 
 def pump_curve(Q, Q_max, H_max):
     a, b, c = 0.8, 0.05, 0.005 
-
     head = H_max - (a * Q + b * Q**2 + c * Q**3) / Q_max
     return np.clip(head, 0, None) 
 
