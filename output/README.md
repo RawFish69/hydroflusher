@@ -6,6 +6,8 @@
 - `shift_{Q_shift}`: Denotes the shift in the flow rate (Q_shift).
 - `{iteration}`: A sequential number representing the iteration of the plot in a series.
 
+### Output Results
+The output plots can be found [Here](https://github.com/RawFish69/hydroflusher/tree/main/output/plots)
 ### Example
 
 Given the parameters `Q_max=150`, `H_max=200`, `Q_shift=20`, and iterating over different volumes and discharge times, the file names will be structured as follows:
