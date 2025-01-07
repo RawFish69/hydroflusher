@@ -72,9 +72,3 @@ The scraper outputs a JSON file containing the aggregated product data which can
 - Follow the instructions in the simulation scripts to adjust parameters and run simulations.
 - View the `plots` folder for pre-calculated outcomes or generate new data as needed.
 - Alternatively, run the workflow in `Actions` on a web browser, the output result can be found in folders.
-
-## License
-This project is licensed under the [MIT License](LICENSE).
-
-## Acknowledgements
-Our team would like to thank the University and Tenaris for sponsoring this project.
